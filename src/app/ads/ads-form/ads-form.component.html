@@ -1,0 +1,94 @@
+<mat-card>
+  <mat-toolbar color="primary">
+    <span>Criar AD</span>
+    <span style="flex: 1 1 auto;"></span>
+    <button (click)="voltarLista()" mat-icon-button aria-label="Voltar para lista de usuários">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </mat-toolbar>
+
+   <form (ngSubmit)="salvar(form)" [formGroup]="form" style="margin: 1em;">
+   <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Título:</mat-label>
+      <input formControlName="titulo"
+             type="text"
+             required
+             maxlength="30"
+             matInput>
+      <mat-icon matSuffix color="primary">title</mat-icon>
+      <mat-error *ngIf="form.controls.titulo.invalid">
+        {{ mensagemErro(form.controls.titulo, ['required']) }}
+      </mat-error>
+      <mat-hint align="end">{{form.value.titulo?.length}}/30</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Descrição:</mat-label>
+      <input formControlName="descricao"
+             type="text"
+             required
+             maxlength="50"
+             matInput>
+      <mat-icon matSuffix color="primary">description</mat-icon>
+      <mat-error *ngIf="form.controls.descricao.invalid">
+        {{ mensagemErro(form.controls.descricao, ['required']) }}
+      </mat-error>
+      <mat-hint align="end">{{form.value.descricao?.length}}/50</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Consultor</mat-label>
+      <input matInput
+              aria-label="State"
+              [matAutocomplete]="auto"
+              formControlName="consultor">
+      <mat-icon matSuffix color="primary">emoji_people</mat-icon>
+      <mat-error *ngIf="form.controls.consultor.invalid">
+        {{ mensagemErro(form.controls.ad, ['required']) }}
+      </mat-error>
+      <mat-autocomplete [displayWith]="mostrarNomeConsultor" #auto="matAutocomplete">
+        <mat-option *ngFor="let consultor of usuariosFiltrados$ | async" [value]="consultor">
+          <img alt="" class="example-option-img" height="25">
+          <span>{{consultor.nome}}</span>
+          <span> {{consultor.sobrenome}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Roteirista:</mat-label>
+      <input matInput disabled [value]="this.form.value.roteirista?.nome">
+      <mat-icon matSuffix color="primary">emoji_people</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>AD:</mat-label>
+      <textarea formControlName="ad"
+             rows="10"
+             required
+             maxlength="10000"
+             matInput>
+      </textarea>
+      <mat-icon matSuffix color="primary">people</mat-icon>
+      <mat-error *ngIf="form.controls.ad.invalid">
+        {{ mensagemErro(form.controls.ad, ['required']) }}
+      </mat-error>
+      <mat-hint align="end">{{form.value.ad?.length}}/10000</mat-hint>
+    </mat-form-field>
+
+    <mat-card-actions class="actions-center">
+      <button [disabled]="form.invalid"
+              type="submit"
+              mat-raised-button
+              color="primary"
+      >Salvar
+      <mat-icon>done_outline</mat-icon>
+      </button>
+      <button (click)="voltarLista()" class="btn-space" mat-raised-button>
+        Cancelar
+        <mat-icon>clear_all</mat-icon>
+      </button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>

@@ -1,0 +1,25 @@
+<mat-card>
+  <button *ngIf="this.exibirBotaoCriar"
+      (click)="abrirRota('criar')"
+      type="button"
+      mat-raised-button
+      color="primary"
+    >Criar Usuário
+      <mat-icon>arrow_forward</mat-icon>
+  </button>
+</mat-card>
+
+  <div *ngIf="this.exibirLista">
+    <div *ngIf="usuarios$ | async as usuarios">
+      <app-usuario-lista
+        [usuarios]="usuarios"
+        [exibirBotaoEditar]="exibirBotaoEditar"
+        [exibirBotaoExcluir]="exibirBotaoExcluir"
+        (acaoExcluir)="confirmarExclusao($event)"
+        (acaoEditar)="editar($event)"
+      >
+      </app-usuario-lista>
+  </div>
+
+  </div>
+

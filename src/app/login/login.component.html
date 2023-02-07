@@ -1,0 +1,54 @@
+<mat-card class="centro">
+
+  <mat-toolbar color="primary">
+    <span>Login</span>
+  </mat-toolbar>
+
+  <mat-divider></mat-divider>
+
+
+  <form [formGroup]="form" class="min-width">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Email:</mat-label>
+      <input type="email"
+             formControlName="email"
+             required
+             maxlength="100"
+             matInput>
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="form.controls.email.invalid">{{validarCampos(form.controls.email, 'email')}}</mat-error>
+      <mat-hint align="end">{{form.value.email?.length}}/100</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Senha:</mat-label>
+      <input [type]="hide ? 'password' : 'text'"
+             required
+             formControlName="senha"
+             matInput>
+      <button mat-icon-button matSuffix (click)="prepararBotao()" [attr.aria-label]="mensagemBotao" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="form.controls.senha.invalid">{{validarCampos(form.controls.senha, 'senha')}}</mat-error>
+    </mat-form-field>
+
+    <mat-card-actions class="actions-center">
+      <button
+              (click)="logar()"
+              type="submit"
+              mat-raised-button
+              color="primary"
+      >Salvar
+      <mat-icon>done_outline</mat-icon>
+      </button>
+      <button class="btn-space" mat-raised-button>
+        Cancelar
+        <mat-icon>clear_all</mat-icon>
+      </button>
+    </mat-card-actions>
+
+    <a href="http://10.0.0.181:4200/sair">Link de teste</a>
+
+  </form>
+</mat-card>
+

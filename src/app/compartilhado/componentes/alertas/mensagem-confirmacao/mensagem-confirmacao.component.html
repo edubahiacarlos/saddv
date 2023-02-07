@@ -1,0 +1,12 @@
+<mat-toolbar mat-dialog-title style="text-align: center;" color="primary">
+  {{ data.titulo }}
+</mat-toolbar>
+
+<div  mat-dialog-content style="text-align: center;">
+  {{ data.mensagem }}
+</div>
+<div mat-dialog-actions style="justify-content: center;">
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Sim</button>
+  <button mat-button [mat-dialog-close]="false">Não</button>
+</div>
+

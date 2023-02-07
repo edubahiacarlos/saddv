@@ -1,0 +1,33 @@
+<div [ngClass]="tema">
+  <mat-toolbar *ngIf="mostrarMenu()" color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu Principal">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button *ngIf="exibirMenuUsuario" routerLink="/usuarios" mat-menu-item>
+        <mat-icon>people</mat-icon>
+        <span>Usuários</span>
+      </button>
+      <button routerLink="/teste" mat-menu-item>
+        <mat-icon>manage_search</mat-icon>
+        <span>Teste</span>
+      </button>
+      <button routerLink="/ads" mat-menu-item>
+        <mat-icon>manage_search</mat-icon>
+        <span>ADs</span>
+      </button>
+      <button routerLink="/consultor" mat-menu-item>
+        <mat-icon>zoom_in</mat-icon>
+        <span>Consultor</span>
+      </button>
+    </mat-menu>
+    <span class="titulo">{{ title }}</span>
+    <span class="example-spacer"></span>
+    <span class="teste">Olá {{ usuarioLogado.nome }} </span>
+    <button (click)="sair()" mat-icon-button class="example-icon favorite-icon" aria-label="Sair do sistema">
+      <mat-icon style="background: red;">close</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+</div>

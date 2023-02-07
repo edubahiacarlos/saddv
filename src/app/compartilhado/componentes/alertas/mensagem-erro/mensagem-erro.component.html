@@ -1,0 +1,16 @@
+<mat-toolbar mat-dialog-title style="text-align: center;" color="warn">
+  Erro {{ mensagem.titulo }}
+</mat-toolbar>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-content>
+  Erro: {{ mensagem.status }}<br>
+  {{ mensagem.conteudo }}
+</div>
+<div mat-dialog-actions style="justify-content: center;">
+  <button mat-raised-button mat-dialog-close>
+    <mat-icon color="warn">close</mat-icon>
+    Fechar
+  </button>
+</div>

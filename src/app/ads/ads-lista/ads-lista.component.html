@@ -1,0 +1,50 @@
+<mat-card>
+  <button
+    (appClickEnter)="abrirTelaCriarAd()"
+    type="button"
+    mat-raised-button
+    color="primary"
+  >Criar AD
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+
+  <mat-toolbar style="margin-top: 1em;" color="primary">
+    <span>Lista de ADs</span>
+  </mat-toolbar>
+
+  <table mat-table [dataSource]="ads" class="mat-elevation-z8 demo-table" aria-label="Tabela de AD">
+    <!-- Position Column -->
+    <ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef> Título </th>
+      <td mat-cell *matCellDef="let element"> {{ element.titulo }} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="consultor">
+      <th mat-header-cell *matHeaderCellDef> Consultor </th>
+      <td mat-cell *matCellDef="let element"> {{ element.consultor.nome }} {{ element.consultor.sobrenome }} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef> Açoes </th>
+
+      <mat-cell style="justify-content: center;" *matCellDef="let ad" class="action-column">
+        <button [disabled]="desabilitarBotaoEdicao(ad)" (click)="editar(ad)" mat-icon-button color="primary" aria-label="Editar Curso">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+          (click)="confirmarExclusao(ad)"
+          mat-icon-button
+          color="warn"
+          aria-label="Remover Curso">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</mat-card>

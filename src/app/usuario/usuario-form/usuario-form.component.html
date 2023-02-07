@@ -1,0 +1,99 @@
+<mat-card>
+  <mat-toolbar color="primary">
+    <span>Criar Usuário</span>
+    <span class="example-spacer"></span>
+    <button (click)="voltarLista()" mat-icon-button aria-label="Voltar para lista de usuários">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()" class="margem">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Nome:</mat-label>
+      <input formControlName="nome"
+             type="text"
+             required
+             maxlength="100"
+             matInput>
+      <mat-icon matSuffix color="primary">people</mat-icon>
+      <mat-error *ngIf="form.controls.nome.invalid">
+        {{ mensagemErro(form.controls.nome, ['required']) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Sobrenome:</mat-label>
+      <input formControlName="sobrenome"
+             type="text"
+             required
+             maxlength="100"
+             matInput>
+      <mat-icon matSuffix color="primary">people</mat-icon>
+      <mat-error *ngIf="form.controls.sobrenome.invalid">
+        {{ mensagemErro(form.controls.sobrenome, ['required']) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>email:</mat-label>
+      <input formControlName="email"
+             type="text"
+             required
+             maxlength="100"
+             matInput>
+      <mat-icon matSuffix color="primary">email</mat-icon>
+      <mat-error *ngIf="form.controls.email.invalid">
+        {{ mensagemErro(form.controls.email, ['required', 'email']) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Confirmar Email:</mat-label>
+      <input formControlName="confirmarEmail"
+             type="text"
+             required
+             maxlength="100"
+             matInput>
+      <mat-icon matSuffix color="primary">email</mat-icon>
+      <mat-error *ngIf="form.controls.confirmarEmail.invalid">
+        {{ mensagemErro(form.controls.confirmarEmail, ['required', 'email']) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Perfil</mat-label>
+      <mat-select formControlName="perfilId"  matInput class="full-width">
+        <mat-option *ngFor="let perfil of perfis" [value]="perfil.id">
+          {{ perfil.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-icon matSuffix color="primary">settings_applications</mat-icon>
+      <mat-error *ngIf="form.controls.perfilId.invalid">
+        {{ mensagemErro(form.controls.perfilId, ['required']) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-card-actions class="actions-center">
+      <button [disabled]="!form.valid"
+              type="submit"
+              mat-raised-button
+              color="primary"
+      >Salvar
+      <mat-icon>done_outline</mat-icon>
+      </button>
+      <button (click)="voltarLista()" class="btn-space" mat-raised-button>
+        Cancelar
+        <mat-icon>clear_all</mat-icon>
+      </button>
+    </mat-card-actions>
+
+
+  </form>
+
+</mat-card>
+
