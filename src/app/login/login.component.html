@@ -1,5 +1,121 @@
-<mat-card class="centro">
+<div class="container">
+  <div class="alert">
+    <div class="row">
+      <mat-card class="col-12 col-lg-12">
+        <mat-toolbar color="primary">
+          <span>Login</span>
+        </mat-toolbar>
 
+
+      <form [formGroup]="form" style="margin: 1em;" >
+        <div class="row">
+          <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" appearance="fill">
+            <mat-label>Email:</mat-label>
+            <input type="email"
+                  formControlName="email"
+                  required
+                  maxlength="100"
+                  matInput>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="form.controls.email.invalid">{{validarCampos(form.controls.email, 'email')}}</mat-error>
+            <mat-hint align="end">{{form.value.email?.length}}/100</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" appearance="fill">
+            <mat-label>Senha:</mat-label>
+            <input [type]="hide ? 'password' : 'text'"
+                  required
+                  formControlName="senha"
+                  matInput>
+            <button mat-icon-button matSuffix (click)="prepararBotao()" [attr.aria-label]="mensagemBotao" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="form.controls.senha.invalid">{{validarCampos(form.controls.senha, 'senha')}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-3 offset-md-3 col-lg-4 offset-lg-2 col-xl-5  offset-xl-1">
+            <button style="width: 100%; margin-top: 5px;" class="example-button-row" (click)="logar()" type="submit" mat-raised-button color="primary">
+              Salvar
+              <mat-icon>done_outline</mat-icon>
+            </button>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-5">
+            <button color="warn" style="width: 100%; margin-top: 5px;"  mat-raised-button>
+              Cancelar
+              <mat-icon>clear_all</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- <div class="container">
+  <div class="alert alert-success"></div>
+  <div class="row">
+
+    <mat-card class="col-12 col-lg-12">
+      <mat-toolbar color="primary">
+        <span>Login</span>
+      </mat-toolbar>
+
+      <form [formGroup]="form" style="margin: 1em;">
+        <div class="row">
+          <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" appearance="fill">
+            <mat-label>Email:</mat-label>
+            <input type="email"
+                  formControlName="email"
+                  required
+                  maxlength="100"
+                  matInput>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="form.controls.email.invalid">{{validarCampos(form.controls.email, 'email')}}</mat-error>
+            <mat-hint align="end">{{form.value.email?.length}}/100</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" appearance="fill">
+            <mat-label>Senha:</mat-label>
+            <input [type]="hide ? 'password' : 'text'"
+                  required
+                  formControlName="senha"
+                  matInput>
+            <button mat-icon-button matSuffix (click)="prepararBotao()" [attr.aria-label]="mensagemBotao" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="form.controls.senha.invalid">{{validarCampos(form.controls.senha, 'senha')}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-3 offset-md-3 col-lg-4 offset-lg-2 col-xl-5  offset-xl-1">
+            <button style="width: 100%; margin-top: 5px;" class="example-button-row" (click)="logar()" type="submit" mat-raised-button color="primary">
+              Salvar
+              <mat-icon>done_outline</mat-icon>
+            </button>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-5">
+            <button color="warn" style="width: 100%; margin-top: 5px;"  mat-raised-button>
+              Cancelar
+              <mat-icon>clear_all</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div> -->
+
+
+<!-- <mat-card>
   <mat-toolbar color="primary">
     <span>Login</span>
   </mat-toolbar>
@@ -8,29 +124,37 @@
 
 
   <form [formGroup]="form" class="min-width">
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Email:</mat-label>
-      <input type="email"
-             formControlName="email"
-             required
-             maxlength="100"
-             matInput>
-      <mat-icon matSuffix>email</mat-icon>
-      <mat-error *ngIf="form.controls.email.invalid">{{validarCampos(form.controls.email, 'email')}}</mat-error>
-      <mat-hint align="end">{{form.value.email?.length}}/100</mat-hint>
-    </mat-form-field>
+    <div class="row">
+      <div class="">
+        <mat-form-field class="col-md-4" appearance="fill">
+          <mat-label>Email:</mat-label>
+          <input type="email"
+                 formControlName="email"
+                 required
+                 maxlength="100"
+                 matInput>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="form.controls.email.invalid">{{validarCampos(form.controls.email, 'email')}}</mat-error>
+          <mat-hint align="end">{{form.value.email?.length}}/100</mat-hint>
+        </mat-form-field>
 
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Senha:</mat-label>
-      <input [type]="hide ? 'password' : 'text'"
-             required
-             formControlName="senha"
-             matInput>
-      <button mat-icon-button matSuffix (click)="prepararBotao()" [attr.aria-label]="mensagemBotao" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-      <mat-error *ngIf="form.controls.senha.invalid">{{validarCampos(form.controls.senha, 'senha')}}</mat-error>
-    </mat-form-field>
+        <mat-form-field class="col-md-4" appearance="fill">
+          <mat-label>Senha:</mat-label>
+          <input [type]="hide ? 'password' : 'text'"
+                 required
+                 formControlName="senha"
+                 matInput>
+          <button mat-icon-button matSuffix (click)="prepararBotao()" [attr.aria-label]="mensagemBotao" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="form.controls.senha.invalid">{{validarCampos(form.controls.senha, 'senha')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div>
+
+
+
 
     <mat-card-actions class="actions-center">
       <button
@@ -46,9 +170,6 @@
         <mat-icon>clear_all</mat-icon>
       </button>
     </mat-card-actions>
-
-    <a href="http://10.0.0.181:4200/sair">Link de teste</a>
-
   </form>
-</mat-card>
+</mat-card> -->
 
